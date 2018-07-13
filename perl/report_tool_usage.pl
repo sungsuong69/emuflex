@@ -1,26 +1,19 @@
-#!/usr/bin/env perl
+####!/usr/bin/env perl
 
 ######################################################################
 #
 # $Header$
 #
 #--
-#-- Usage : regs_xml2uvm[ -h|--help ] [ --bundle|-b bundle ] [-nv]
-#--                      --input|-i file [ --prefix|-p prefix ]
-#--                      [ --pkg file ] [ --module file ]
+#-- Usage : report_tool_usage.pl[ -h|--help ] [-v]
+#--                      --input|-i file 
 #--
 #--     options: --help|-h           help page
 #--              -v                  Verbose output
-#--              -n                  Do NOT write sv.files. Default: Add these files to it.
-#--              --bundle|-b bundle  Format: "a/b".  Default: from pwd using "what_bundle".
-#--              --input|-i  file    Input xml file.
-#--              --prefix|-p prefix  Output file name prefix, and module and package prefix.
-#--                                  Default: from pwd using "what_bundle -l".
-#--              --pkg file          Output Package file path.
-#--                                  Default: $PROJ_HOME/<bundle>/uvclib/components/<prefix>_reg_model_pkg.sv
+#--              --input|-i  file    Input file.
 #--
 #-- Function:
-#--    Convert Register xml file to UVM register model.
+#--    taking cadence log file and producing the tool usage
 #--
 #
 ######################################################################
@@ -38,16 +31,9 @@ require  'dumpvar.pl';
 
 my $exit_code = 0;
 my $execname = $0;
-my $proj=$ENV{PROJ_HOME};
-my $bundle;
 my $infile;
-my $prefix;
-my $pkgfile;
 my $verbose;
-my $today=`date '+%d %b %Y'`; chomp $today;
-my $addr_bits=20;
-my $sw_reset=0;
-my $write_sv_files=1;
+#my $today=`date '+%d %b %Y'`; chomp $today;
 my $indent_spaces=3;
 my $sepstr_len=80;
 
@@ -266,7 +252,7 @@ init_project_hash_report();
 generate_project_hash_report();
 #print_my_hash($project_hash_report,"key_only");
 #print_project_hash_report($project_hash_report);
-dumpValue(\$project_hash_report);
+#dumpValue(\$project_hash_report);
 print Dumper($project_hash_report);
 
 ################################# Main Body############################
